@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+  l2tp-over-ipsec-server:
+    tty: true
+    image: hwdsl2/ipsec-vpn-server
+    container_name: l2tp-over-ipsec-server
+    privileged: true
+    ports:
+      - "500:500/udp"
+      - "4500:4500/udp"
+    # ユーザ情報等を書いた設定ファイル（事前共有鍵/ユーザ名/パスワード）
+    env_file:
+      - ./vpn.env
+    restart: always
